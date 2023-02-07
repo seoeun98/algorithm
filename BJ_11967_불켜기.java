@@ -73,14 +73,14 @@ public class BJ_11967_불켜기 {
 				
 				int[] now = que1.poll();
 				
-				
-				// 불 켜고
+				// 현재 방과 연결되어있는 스위치 켜기
 				for(int[] linked : map[now[0]][now[1]]) {
 					if(!isLightOn[linked[0]][linked[1]]) {
 						isLightOn[linked[0]][linked[1]] = true;
 					}
 				}
 	
+				// 현재 방 상하좌우로 갈 수 있는 영역 넓히기
 				int[] dr = {0, -1, 1, 0};
 				int[] dc = {1, 0, 0, -1};
 				
@@ -94,6 +94,7 @@ public class BJ_11967_불켜기 {
 					}
 				}
 				
+				// 갈 수 있고 & 불 켜져 있는데 & 아직 방문 안한 방 있으면 그 방으로 이동
 				for(int i = 0; i < n; i++) {
 					for(int j = 0; j < n; j++) {
 						if(reachable[i][j] && isLightOn[i][j] && !visited[i][j]) {
@@ -104,6 +105,7 @@ public class BJ_11967_불켜기 {
 				}
 			}
 			
+			// 불 켜져 있는 방의 수 세기
 			int answer = 0;
 			for(int i = 0; i < n; i++) {
 				for(int j = 0; j < n; j++) {
